@@ -46,7 +46,7 @@ export default function RegisterScreen() {
           secureTextEntry={true}
           />
     <ButtonGradientRegister onPress={() => {            
-            fetch('http://192.168.15.253:3002/user', {
+            fetch('http://127.0.0.1:3002/user/', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',

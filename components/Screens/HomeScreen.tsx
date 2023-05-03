@@ -15,7 +15,7 @@ function HomeScreen() {
         <Tab.Screen 
         name="Crazy button" 
         component={Tab1Screen} 
-        options={{ headerShown: false, tabBarShowLabel: false,
+        options={{ headerShown: false, tabBarShowLabel: false, tabBarBadge: 3,
           tabBarIcon: ({color, size}) =>
             (<MaterialCommunityIcons name="gesture-tap-button" size={30} color="#121212"/>)
         }}
@@ -23,7 +23,7 @@ function HomeScreen() {
         <Tab.Screen 
         name="Photo page" 
         component={Tab2Screen} 
-        options={{ headerShown: false, tabBarShowLabel: false, tabBarBadge: 3,
+        options={{ headerShown: false, tabBarShowLabel: false,
           tabBarIcon: ({color, size}) =>
             (<MaterialIcons name="photo-library" size={25} color="#121212"/>)
         }}
@@ -81,7 +81,7 @@ function Tab2Screen() {
     <View style={styles.tabContainer}>
       <Text style={styles.tabTitle}>Photo page</Text>
       <Image 
-        style={{ width: 350, height: 255}}
+        style={{ width: 350, height: 255, borderRadius: 10}}
         source={{uri: 'https://www.meme-arsenal.com/memes/73770917d803b560114e0cf5e9d8a870.jpg'}}
       />     
       </View>
@@ -89,9 +89,29 @@ function Tab2Screen() {
 }
 
 function Tab3Screen() {
+  const [animation] = useState(new Animated.ValueXY({ x: 0, y: 0}));
+
   return (
     <View style={styles.tabContainer}>
-      <Text style={styles.tabTitle}>Contenido de la Tab 3</Text>
+      <Text style={styles.tabTitle}>Aprieta y verás tu nombre</Text>
+      <TouchableOpacity
+        style={styles.tabButton}
+        activeOpacity={0.7}
+      >
+        <Animated.Text
+          style={[
+            styles.tabButtonText,
+            {
+              transform: [
+                { translateX: animation.x },
+                { translateY: animation.y },
+              ],
+            },
+          ]}
+        >
+          Boton
+        </Animated.Text>
+      </TouchableOpacity>
     </View>
   );
 }
